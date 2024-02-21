@@ -12,6 +12,9 @@ spring:
     properties:
       hibernate:
         show_sql: true
+  kafka:
+    producer:
+      bootstrap-servers: 127.0.0.1:9092
 eureka:
   instance:
     instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
@@ -25,14 +28,3 @@ logging:
   level:
     com.foodexpress.adminservice: DEBUG
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include:
-          - info
-          - refresh
-          - health
-          - beans
-          - httptrace
-          - busrefresh
