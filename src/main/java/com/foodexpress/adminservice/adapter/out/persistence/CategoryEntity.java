@@ -31,6 +31,7 @@ public class CategoryEntity extends UpdatedEntity {
     /**
      * 사용 여부
      */
+    @Column(name = "isUse")
     private boolean use;
 
     public static CategoryEntity mapToEntity(Category category) {

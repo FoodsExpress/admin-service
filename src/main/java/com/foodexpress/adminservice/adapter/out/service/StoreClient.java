@@ -4,6 +4,7 @@ import com.foodexpress.adminservice.domain.Store;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -11,6 +12,6 @@ import java.util.List;
 public interface StoreClient {
 
     @GetMapping("/store")
-    List<Store> getStoreList(StoreSearchCondition storeSearchCondition, Pageable pageable);
+    List<Store> getStoreList(@RequestParam StoreSearchCondition storeSearchCondition, Pageable pageable);
 
 }

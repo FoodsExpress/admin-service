@@ -4,6 +4,7 @@ import com.foodexpress.adminservice.application.port.in.SearchStoreUseCase;
 import com.foodexpress.adminservice.domain.Store;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ public class QueryCategoryController {
 
     private final SearchStoreUseCase searchStoreUseCase;
 
+    @GetMapping("/store")
     public List<Store> getStoreList(StoreSearchRequest storeSearchRequest, Pageable pageable) {
         return searchStoreUseCase.searchStoreList(storeSearchRequest.convertQuery(), pageable);
     }

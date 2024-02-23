@@ -9,9 +9,16 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import static com.foodexpress.adminservice.common.util.ApiUtil.fail;
 import static org.springframework.http.HttpStatus.BAD_GATEWAY;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @RestControllerAdvice
 public class ExceptionAdvice {
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(BAD_REQUEST)
+    public ApiUtil.ApiResult<Void> defaultException(Exception e) {
+        return fail(e, BAD_REQUEST);
+    }
 
     @ExceptionHandler(CategoryAlreadyExistException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
