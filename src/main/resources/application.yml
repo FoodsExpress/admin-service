@@ -17,6 +17,9 @@ spring:
     password: foodexpress
     username: foodexpress
     driver-class-name: com.mysql.cj.jdbc.Driver
+  kafka:
+    producer:
+      bootstrap-servers: 127.0.0.1:9092
 eureka:
   instance:
     instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
