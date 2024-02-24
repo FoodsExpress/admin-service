@@ -12,6 +12,11 @@ spring:
     properties:
       hibernate:
         show_sql: true
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/admin?rewriteBatchedStatements=true&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    password: foodexpress
+    username: foodexpress
+    driver-class-name: com.mysql.cj.jdbc.Driver
   kafka:
     producer:
       bootstrap-servers: 127.0.0.1:9092
@@ -28,3 +33,34 @@ logging:
   level:
     com.foodexpress.adminservice: DEBUG
 
+resilience4j:
+  retry:
+    configs:
+      default:
+        max-attempts: 3
+        wait-duration:
+          nanos: 1000
+        retry-exceptions:
+          - com.foodexpress.adminservice.common.exceptions.RetryException
+        ignore-exceptions:
+          - com.foodexpress.adminservice.common.exceptions.IgnoreException
+    instances:
+      simpleRetryConfig:
+        base-config: default
+
+  circuitbreaker:
+    configs:
+      default:
+        sliding-window-size: 10
+        minimum-number-of-calls: 3
+        permitted-number-of-calls-in-half-open-state: 5
+        automatic-transition-from-open-to-half-open-enabled: true
+        wait-duration-in-open-state:
+          seconds: 10
+        failure-rate-threshold: 30
+        slow-call-duration-threshold:
+          nanos: 3000
+        slow-call-rate-threshold: 50
+        event-consumer-buffer-size: 10
+        record-exceptions:
+          - com.foodexpress.adminservice.common.exceptions.RecordException
