@@ -64,3 +64,8 @@ resilience4j:
         event-consumer-buffer-size: 10
         record-exceptions:
           - com.foodexpress.adminservice.common.exceptions.RecordException
+kafka:
+  examine-store: examineStore
+  config:
+    bootstrap-servers-config: 127.0.0.1
+    group-id-config: admin-service
