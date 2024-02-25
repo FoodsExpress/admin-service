@@ -11,16 +11,16 @@ public class RegisterCategoryCommand {
 
     private String categoryName;
 
-    private boolean use;
+    private boolean active;
 
-    public static RegisterCategoryCommand of(String categoryName, boolean use) {
-        return new RegisterCategoryCommand(categoryName, use);
+    public static RegisterCategoryCommand of(String categoryName, boolean active) {
+        return new RegisterCategoryCommand(categoryName, active);
     }
 
     public Category mapToDomain() {
         return Category.builder()
             .categoryName(categoryName)
-            .use(use)
+            .active(active)
             .build();
     }
 
