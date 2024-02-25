@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import static com.foodexpress.adminservice.common.util.ApiUtil.success;
 
+/**
+ * 카테고리 등록 컨트롤러
+ *
+ * @author seunggu.lee
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin")
@@ -18,6 +23,12 @@ public class RegisterCategoryController {
 
     private final RegisterCategoryUseCase registerCategoryUseCase;
 
+    /**
+     * 카테고리 등록
+     *
+     * @param request 카테고리 요청
+     * @return
+     */
     @PostMapping("/category")
     public ApiUtil.ApiResult<RegisterCategoryResponse> registerCategory(@RequestBody RegisterCategoryRequest request) {
         RegisterCategoryCommand command = request.mapToCommand();

@@ -10,8 +10,9 @@ import java.time.LocalDate;
  * @author seunggu.lee
  */
 @Builder
-public record Store(Long id, String storeId, String bizNo, String storeUserId, String franchiseId, StoreType storeType, String storeName,
-                    StoreStatus storeStatus,
-                    LocalDate startedAt) {
+public record Store(
+    Long id, String storeId, String bizNo, String storeUserId, String franchiseId, StoreType storeType, String storeName,
+    StoreStatus storeStatus,
+    LocalDate startedAt, String createdBy, LocalDate createdAt, String updatedBy, LocalDate updatedAt) {
 
 }
