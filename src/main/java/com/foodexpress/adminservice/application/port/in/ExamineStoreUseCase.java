@@ -4,6 +4,6 @@ import com.foodexpress.adminservice.domain.Store;
 
 public interface ExamineStoreUseCase {
 
-    Store examineStore(ExamineStoreCommand command);
-    
+    Store examineStore(ExamineStoreCommand command, String loginUserId, String examineReasons);
+
 }

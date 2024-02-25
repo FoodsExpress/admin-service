@@ -28,10 +28,12 @@ public class ExamineStorePortAdapter implements ExamineStorePort {
     private final KafkaTopicProperties kafkaTopicProperties;
 
     @Override
-    public Store examineStore(Store store) {
+    public Store examineStore(Store store, String loginUserId, String examineReason) {
         String storeJson;
+
         try {
-            storeJson = objectMapper.writeValueAsString(store);
+            storeJson =
+                objectMapper.writeValueAsString(ExamineStoreRequest.of(store.storeId(), store.storeStatus(), loginUserId, examineReason));
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

@@ -13,6 +13,6 @@ import java.time.LocalDate;
 public record Store(
     Long id, String storeId, String bizNo, String storeUserId, String franchiseId, StoreType storeType, String storeName,
     StoreStatus storeStatus,
-    LocalDate startedAt, String createdBy, LocalDate createdAt, String modifiedBy, LocalDate modifiedAt) {
+    LocalDate startedAt, String createdBy, LocalDate createdAt, String updatedBy, LocalDate updatedAt) {
 
 }

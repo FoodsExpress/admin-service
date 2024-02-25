@@ -1,8 +1,10 @@
 package com.foodexpress.adminservice.adapter.in.web;
 
 import com.foodexpress.adminservice.application.port.in.ExamineStoreUseCase;
+import com.foodexpress.adminservice.common.security.JwtAuthentication;
 import com.foodexpress.adminservice.common.util.ApiUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +26,11 @@ public class ExamineStoreController {
     private final ExamineStoreUseCase examineStoreUseCase;
 
     @PatchMapping
-    public ApiUtil.ApiResult<StoreResponse> examineStore(@RequestBody ExamineStoreRequest examineStoreRequest) {
-        return success(StoreResponse.mapToResponse(examineStoreUseCase.examineStore(examineStoreRequest.mapToCommand())));
+    public ApiUtil.ApiResult<StoreResponse> examineStore(@RequestBody ExamineStoreRequest examineStoreRequest, @AuthenticationPrincipal
+    JwtAuthentication authentication) {
+        return success(StoreResponse.mapToResponse(examineStoreUseCase.examineStore(examineStoreRequest.mapToCommand(),
+                                                                                    authentication.accountId(),
+                                                                                    examineStoreRequest.getExamineReason())));
     }
 
 }

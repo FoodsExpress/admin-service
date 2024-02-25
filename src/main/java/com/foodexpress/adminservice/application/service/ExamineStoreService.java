@@ -14,8 +14,8 @@ public class ExamineStoreService implements ExamineStoreUseCase {
     private final ExamineStorePort examineStorePort;
 
     @Override
-    public Store examineStore(ExamineStoreCommand command) {
-        return examineStorePort.examineStore(command.mapToStore());
+    public Store examineStore(ExamineStoreCommand command, String loginUserId, String examineReason) {
+        return examineStorePort.examineStore(command.mapToStore(), loginUserId, examineReason);
     }
 
 }
