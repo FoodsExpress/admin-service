@@ -31,14 +31,14 @@ public class CategoryEntity extends UpdatedEntity {
     /**
      * 사용 여부
      */
-    @Column(name = "isUse")
-    private boolean use;
+    @Column(name = "isActive")
+    private boolean active;
 
     public static CategoryEntity mapToEntity(Category category) {
         CategoryEntity entity = new CategoryEntity();
         entity.categoryId = UUID.randomUUID().toString();
         entity.categoryName = category.categoryName();
-        entity.use = category.use();
+        entity.active = category.active();
         return entity;
     }
 
@@ -46,8 +46,17 @@ public class CategoryEntity extends UpdatedEntity {
         return Category.builder()
             .categoryId(CategoryId.of(categoryId))
             .categoryName(categoryName)
-            .use(use)
+            .active(active)
+            .createdBy(createdBy)
+            .createdDate(createdDate)
+            .updatedBy(updatedBy)
+            .updatedDate(updatedDate)
             .build();
+    }
+
+    public void sync(Category category) {
+        this.categoryName = category.categoryName();
+        this.active = category.active();
     }
 
 }
